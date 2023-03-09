@@ -20,34 +20,32 @@ public class Test6198 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int N = Integer.parseInt(br.readLine());
 		Stack<Building> stack = new Stack<>();
-		int count = 0;
+		int total = 0;
 		
 		for(int i=1;i<=N;i++) {
-			Building building = new Building(i, Integer.parseInt(br.readLine()));
+			int height = Integer.parseInt(br.readLine());
 			
 			if(stack.isEmpty()) {
-				stack.push(building);
+				stack.push(new Building(i, height));
 			}
 			else {
-				while(stack.peek().height <= building.height) {
+				while(stack.peek().height <= height) {
 					stack.pop();
 					if(stack.isEmpty()) break;
 				}
-				if(stack.isEmpty() || stack.peek().height > building.height) {
-					stack.push(building);
-					count += stack.size() - 1;
+				if(stack.isEmpty()){
+					stack.push(new Building(i, height));
+				}
+				else if(stack.peek().height > height) {
+					stack.push(new Building(i, height));
+					for(int j=0;j<stack.size()-1;j++) {
+						total++;
+					}
 				}
 			}
 		}
-		System.out.println(count);
+		System.out.println(total);
 	}
 }
 
-/*
- * 10
- * 10 3  -->  count = 1
- * 10 7  -->  count = 1 + 1 = 2
- * 10 7 4  --> count = 2 + 2 = 4
- * 12	   --> count = 4
- * 12 2    --> count = 4 + 1 = 5;
- */ 
+
