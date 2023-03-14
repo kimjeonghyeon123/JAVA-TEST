@@ -1,5 +1,6 @@
 package baekjoon.stack2;
-
+//스택에 원하는 값만 집어넣고 바로 뺄 수 있도록
+//입력값을 집어넣음
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
